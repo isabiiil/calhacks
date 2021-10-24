@@ -5,17 +5,17 @@ export default function Navbar() {
   const [colorTheme, setTheme] = useDarkMode();
   return (
     <div className="w-screen flex justify-between bg-green-300 dark:bg-green-700">
-      <h1>LOGO</h1>
+      <h1 className="text-4xl m-8 text-gray-800 dark:text-gray-100">BLK + SBA</h1>
       <div className="flex justify-end text-gray-800 dark:text-gray-100">
         <a className="p-8" href="/">What?</a>
-        <a className="p-8" href="/walkthrough">How?</a>
+        <a className="p-8" href="/questions">How?</a>
         <a className="p-8" href="/info">Why?</a>
         <a className="p-8 mr-16" href="/login">Who?</a>
         {colorTheme === "light" ? (
           <svg
             onClick={() => setTheme("light")}
             xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8 m-4 cursor-pointer"
+            className="h-8 w-8 m-8 cursor-pointer"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -31,7 +31,7 @@ export default function Navbar() {
           <svg
             onClick={() => setTheme("dark")}
             xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8 m-4 cursor-pointer"
+            className="h-8 w-8 m-8 cursor-pointer"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

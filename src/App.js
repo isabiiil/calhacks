@@ -3,59 +3,44 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import useDarkMode from "./components/useDarkMode";
+import Input from "./pages/Input";
+import Landing from "./pages/Landing";
+import Questions from "./pages/Questions";
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+import { getFirestore } from 'firebase/firestore/lite';
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCFUzm27n9IkIV820A_VyyvCXb9v8cBI8A",
+  authDomain: "hackher-9b4ed.firebaseapp.com",
+  databaseURL: "https://hackher-9b4ed.firebaseio.com",
+  projectId: "hackher-9b4ed",
+  storageBucket: "hackher-9b4ed.appspot.com",
+  messagingSenderId: "875167518655",
+  appId: "1:875167518655:web:425f05463e6431d6601b0a"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getFirestore(app);
 
 
 export default function App() {
-  const [colorTheme, setTheme] = useDarkMode();
+  const InputComponent = () => <Input database={database} />
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Navbar />
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+      <div className="bg-gradient-to-b from-green-300 to-purple-400 dark:from-green-700 dark:to-purple-800">
         <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+          <Route exact path="/questions" component={Questions} />
+          <Route exact path="/input" component={InputComponent} />
+          <Route exact path="/" component={Landing} />
         </Switch>
       </div>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }
