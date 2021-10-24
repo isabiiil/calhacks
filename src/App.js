@@ -13,6 +13,7 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getFirestore } from 'firebase/firestore/lite';
+import DataVis from "./pages/DataVis";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -32,12 +33,14 @@ const database = getFirestore(app);
 
 export default function App() {
   const InputComponent = () => <Input database={database} />
+  const DataVisComponent = () => <DataVis database={database} />
   return (
     <Router>
       <div className="bg-gradient-to-b from-green-300 to-purple-400 dark:from-green-700 dark:to-purple-800">
         <Switch>
           <Route exact path="/questions" component={Questions} />
           <Route exact path="/input" component={InputComponent} />
+          <Route exact path="/datavis" component={DataVisComponent} />
           <Route exact path="/" component={Landing} />
         </Switch>
       </div>
